@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
+
+<title>โปรไฟล์</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+background:#f5f3fb;
+overflow-x:hidden;
+}
+
+/* TOP */
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+}
+
+.logo-box{
+width:78%;
+height:90px;
+background:white;
+border-radius:30px;
+box-shadow:0 5px 15px rgba(0,0,0,0.04);
+}
+
+.setting{
+width:60px;
+height:60px;
+border-radius:50%;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.06);
+font-size:24px;
+color:#8d7fd1;
+}
+
+/* PROFILE */
+
+.profile{
+padding:0 20px;
+margin-top:5px;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.avatar{
+width:150px;
+height:150px;
+border-radius:40px;
+object-fit:cover;
+background:#ffe4f4;
+box-shadow:0 10px 20px rgba(255,120,180,0.12);
+}
+
+.username{
+margin-top:18px;
+font-size:24px;
+font-weight:bold;
+color:#444;
+}
+
+.bio{
+margin-top:10px;
+font-size:15px;
+color:#777;
+text-align:center;
+padding:0 20px;
+}
+
+/* FEED */
+
+.feed{
+margin:30px 20px 120px;
+height:1100px;
+background:white;
+border-radius:35px;
+box-shadow:0 5px 15px rgba(0,0,0,0.04);
+}
+
+/* BOTTOM */
+
+.bottom{
+position:fixed;
+left:15px;
+right:15px;
+bottom:15px;
+background:white;
+border-radius:30px;
+display:flex;
+justify-content:space-around;
+padding:15px;
+box-shadow:0 0 15px rgba(0,0,0,0.08);
+}
+
+.bottom div{
+text-align:center;
+color:#777;
+font-size:14px;
+}
+
+.active{
+color:#a855f7 !important;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- TOP -->
+
+<div class="top">
+
+<div class="logo-box"></div>
+
+<div class="setting"
+onclick="window.location.href='momsetting.html'">
+⚙️
+</div>
+
+</div>
+
+<!-- PROFILE -->
+
+<div class="profile">
+
+<img id="avatar"
+class="avatar">
+
+<div class="username"
+id="username">
+กำลังโหลด...
+</div>
+
+<div class="bio"
+id="bio">
+...
+</div>
+
+</div>
+
+<!-- FEED -->
+
+<div class="feed"></div>
+
+<!-- MENU -->
+
+<div class="bottom">
+
+<div onclick="window.location.href='mom1.html'">
+🏠<br>หน้าหลัก
+</div>
+
+<div onclick="window.location.href='mom4.html'">
+🪐<br>รวมโพสต์
+</div>
+
+<div class="active"
+onclick="window.location.href='mom2.html'">
+👤<br>โปรไฟล์
+</div>
+
+<div onclick="window.location.href='mom3.html'">
+💬<br>แชท
+</div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+getDoc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyC2DbZMOJqGYUKkc2nhYU4B-oX41SYLupU",
+
+authDomain: "myloginapp-83797.firebaseapp.com",
+
+projectId: "myloginapp-83797",
+
+storageBucket: "myloginapp-83797.firebasestorage.app",
+
+messagingSenderId: "968361508229",
+
+appId: "1:968361508229:web:ece12a37d93ef48418d8ec"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+const defaultAvatar =
+"https://cdn-icons-png.flaticon.com/512/4140/4140048.png";
+
+onAuthStateChanged(auth, async(user)=>{
+
+if(user){
+
+const ref = doc(db,"users",user.uid);
+
+const snap = await getDoc(ref);
+
+if(snap.exists()){
+
+const data = snap.data();
+
+document.getElementById("avatar").src =
+data.photo || defaultAvatar;
+
+document.getElementById("username").innerText =
+data.name || "ไม่มีชื่อ";
+
+document.getElementById("bio").innerText =
+data.bio || "ยังไม่มีข้อมูล";
+
+}else{
+
+document.getElementById("avatar").src =
+defaultAvatar;
+
+document.getElementById("username").innerText =
+"ผู้ใช้ใหม่";
+
+}
+
+}
+
+});
+
+/* กันซูม */
+
+document.addEventListener(
+'gesturestart',
+function (e) {
+e.preventDefault();
+});
+
+let lastTouchEnd = 0;
+
+document.addEventListener(
+'touchend',
+function (event) {
+
+const now = (new Date()).getTime();
+
+if (now - lastTouchEnd <= 300) {
+event.preventDefault();
+}
+
+lastTouchEnd = now;
+
+}, false);
+
+</script>
+
+</body>
+</html>
