@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
+
+<title>หน้าหลัก</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+  font-family:sans-serif;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  touch-action:manipulation;
+  background:#f7f5fb;
+}
+
+/* HOME PAGE */
+
+#homePage{
+  width:100%;
+  height:100vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  background:#f7f5fb;
+  padding:20px;
+  padding-bottom:110px;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.title{
+  font-size:38px;
+  font-weight:bold;
+  color:#20204d;
+}
+
+.sub{
+  color:#8a8aa0;
+  margin-top:8px;
+}
+
+.notify{
+  width:48px;
+  height:48px;
+  background:white;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  box-shadow:0 3px 10px rgba(0,0,0,0.08);
+  font-size:20px;
+}
+
+.banner{
+  margin-top:25px;
+  background:linear-gradient(135deg,#efe8ff,#f7e6ff);
+  border-radius:25px;
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.banner h3{
+  font-size:28px;
+  color:#20204d;
+}
+
+.banner p{
+  color:#777;
+  margin-top:10px;
+}
+
+.start-btn{
+  margin-top:20px;
+  width:150px;
+  background:linear-gradient(90deg,#7b49ff,#b04cff);
+  color:white;
+  border:none;
+  border-radius:30px;
+  padding:14px;
+  font-size:16px;
+}
+
+.banner img{
+  width:110px;
+}
+
+.menu{
+  display:flex;
+  gap:12px;
+  margin-top:25px;
+}
+
+.card{
+  flex:1;
+  background:white;
+  border-radius:25px;
+  padding:18px;
+  text-align:center;
+  box-shadow:0 3px 10px rgba(0,0,0,0.05);
+}
+
+.card img{
+  width:65px;
+  height:65px;
+}
+
+.card h4{
+  margin-top:10px;
+  font-size:20px;
+}
+
+.card p{
+  color:#888;
+  margin-top:5px;
+  font-size:13px;
+}
+
+.go{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  margin:auto;
+  margin-top:15px;
+  background:#ff4fa0;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+}
+
+.bottom{
+  position:fixed;
+  left:15px;
+  right:15px;
+  bottom:15px;
+  background:white;
+  border-radius:30px;
+  display:flex;
+  justify-content:space-around;
+  padding:15px;
+  box-shadow:0 0 15px rgba(0,0,0,0.08);
+  z-index:999;
+}
+
+.bottom div{
+  text-align:center;
+  color:#777;
+  font-size:14px;
+}
+
+.active{
+  color:#7d4cff;
+  font-weight:bold;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:600px){
+
+  .menu{
+    flex-direction:column;
+  }
+
+  .banner{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .banner img{
+    width:90px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HOME PAGE -->
+
+<div id="homePage">
+
+<div class="top">
+
+<div>
+<div class="title">แชท ✨</div>
+<div class="sub">เพื่อนใหม่ รอคุณอยู่</div>
+</div>
+
+<div class="notify">🔔</div>
+
+</div>
+
+<div class="banner">
+
+<div>
+
+<h3>เพื่อนใหม่สนุกๆ</h3>
+
+<p>ลองใช้งานวาร์ปคู่ออนไลน์</p>
+
+<button class="start-btn">
+เริ่มวาร์ปเลย
+</button>
+
+</div>
+
+<img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png">
+
+</div>
+
+<div class="menu">
+
+<div class="card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/833/833472.png">
+
+<h4>หาคู่</h4>
+
+<p>จับคู่เพื่อคุยกัน</p>
+
+<div class="go">›</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/742/742751.png">
+
+<h4>ไดเรกต์</h4>
+
+<p>ส่งข้อความได้เลย</p>
+
+<div class="go" style="background:#4285ff;">›</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png">
+
+<h4>กิจกรรม</h4>
+
+<p>ร่วมสนุกลุ้นรางวัล</p>
+
+<div class="go" style="background:#ffb22c;">›</div>
+
+</div>
+
+</div>
+
+<div class="bottom">
+
+<div onclick="window.location.href='mom1.html'">
+🏠<br>หน้าหลัก
+</div>
+
+<div onclick="window.location.href='mom4.html'">
+🪐<br>รวมโพสต์
+</div>
+
+<div onclick="window.location.href='mom2.html'">
+👤<br>โปรไฟล์
+</div>
+
+<div onclick="window.location.href='mom3.html'">
+💬<br>แชท
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+// กันซูมเข้าออก
+
+document.addEventListener('gesturestart', function (e) {
+  e.preventDefault();
+});
+
+let lastTouchEnd = 0;
+
+document.addEventListener('touchend', function (event) {
+
+  const now = (new Date()).getTime();
+
+  if (now - lastTouchEnd <= 300) {
+    event.preventDefault();
+  }
+
+  lastTouchEnd = now;
+
+}, false);
+
+</script>
+
+</body>
+</html>
